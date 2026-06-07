@@ -1,0 +1,4 @@
+<resources>
+    <!-- Minimal launch theme (dark); Compose (SupertonicTheme) handles real theming. -->
+    <style name="Theme.Supertonic" parent="android:Theme.Material.NoActionBar" />
+</resources>
