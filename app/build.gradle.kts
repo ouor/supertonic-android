@@ -16,9 +16,19 @@ android {
         minSdk = 28
         targetSdk = 36
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    // Build a separate APK per ABI; only arm64-v8a is shipped.
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("arm64-v8a")
+            isUniversalApk = false
+        }
     }
 
     buildTypes {
@@ -28,6 +38,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // Sign the v0.1 release with the debug key so it is installable.
+            // TODO: replace with a dedicated release keystore before public distribution.
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
